@@ -9,13 +9,29 @@ Version: 1.0
 Author URI: https://github.com/imanuelgittens
 */
 
-$response = wp_remote_get('https://jsonplaceholder.typicode.com/posts/1');
 
-if ( is_array( $response ) && ! is_wp_error( $response ) ) {
-    $body = $response['body']; // use the content  
-    $json = json_decode($body, true);
-    $quote = $json['body'];
+function getQuote(){
+	$motivation_cookie_name = "wptt-motivate-cookie";
+	if(!isset($_COOKIE[$motivation_cookie_name])){
+
+		$response = wp_remote_get("https://talaikis.com/api/quotes/random/");
+
+		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
+		    $body = $response["body"]; // use the content  
+		    $json = json_decode($body, true);
+		    $motivation_cookie_value = $json["quote"];
+		}
+
+		setcookie($motivation_cookie_name, $motivation_cookie_value, time() + (86400 * 7));
+		echo "<p id='wptt-quote'>$motivation_cookie_value</p>";
+		
+	}else{
+		echo "<p id='wptt-quote'>$_COOKIE[$motivation_cookie_name]</p>";
+	}
+	
 }
+
+
 
 //function for adding quote to page
 function display_quote() {
@@ -24,7 +40,7 @@ function display_quote() {
 }
 
 // Now we set that function up to execute when the admin_footer action is called
-add_action('admin_footer_text', 'display_quote');
+add_action('admin_footer_text', 'getQuote');
 // We need some CSS to position the paragraph
 function wptt_quote_style() {
 	echo "
@@ -36,9 +52,6 @@ function wptt_quote_style() {
 	    font-size: 16px;
 	    max-width: 100em;
         padding: 10px;
-		position: absolute;
-		right: 1em;
-		top: 2.3em;
 	}
 	</style>
 	";
