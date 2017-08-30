@@ -1,8 +1,10 @@
 # wptt-motivation
 
-First WordPress plugin built for teaching the Local Trinidad and Tobago WordPress Meetup about plugin development. Uses a motivational quote API and shows these quotes in the admin area (Built on top of Hello Dolly)
+First WordPress plugin built for teaching the Local Trinidad and Tobago WordPress Meetup about plugin development. Uses a quote API and shows these quotes in the admin area (Built on top of Hello Dolly)
 
-A WordPress Plugin is a program or a set of one or more functions written in the PHP scripting language, that adds a specific set of features or services to the WordPress site
+What is a WordPress plugin?
+
+A WordPress Plugin is a program or a set of one or more functions written in the PHP scripting language, that adds a specific set of features or services to the WordPress site.
 
 
 1.Getting Started
@@ -11,10 +13,10 @@ To start creating a plugin, all we need to do is navigate to the `wp-content/plu
 
 ````
 
-wptt-motivation
+wptt-quotes
 |
 |
-|-->wptt-motivation.php
+|-->wptt-quotes.php
 
 
 ````
@@ -36,7 +38,7 @@ Author URI: https://github.com/imanuelgittens
 
 With that, we've technically created our first plugin! But let's make it do something. 
 
-We want to display quotes somewhere so for that we'll need a function. We'll worry about where it is being displayed later on. 
+We want to display quotes somewhere, so for that we'll need a function. We'll worry about where it is being displayed later on. 
 
 ````
 //function for adding quote to page
@@ -128,6 +130,8 @@ function getQuote(){
 
 ````
 And that's it! We've successfully built our first plugin.
+
+For more details and further advancement of your plugin development skills, visit the links below.
 
 
 [Smashing Magazine](https://www.smashingmagazine.com/2011/09/how-to-create-a-wordpress-plugin/)
